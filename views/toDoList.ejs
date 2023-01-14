@@ -9,5 +9,17 @@
 </head>
 <body>
     <h1>ToDo List for <%= dayOfWeek %> </h1>
+    <ul>
+        <li>by food</li>
+        <li>cook food</li>
+        <li>eat food</li>
+        <% for(var i = 0; i < newItems.length; i++) {  %>
+        <li><%= newItems[i] %></li>
+        <% } %>
+    </ul>
+    <form action="/" method="post">
+        <input type="text" name="newListItem" id="">
+        <button type="submit">Add to list</button>
+    </form>
 </body>
 </html>

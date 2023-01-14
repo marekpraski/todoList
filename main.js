@@ -8,14 +8,21 @@ app.use(express.static("public"));
 
 const dayName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
+var listItems = [];
+
 app.get("/", (req, res)=>{
 
     let day = new Date();
-    res.render("toDoList", {dayOfWeek: dayName[day.getDay()]});
+    res.render("toDoList", {dayOfWeek: dayName[day.getDay()], newItems: listItems});
 
 });
 
-
+app.post("/", (req, res)=>{
+    let i = req.body.newListItem;
+    listItems.push(i);
+    console.log(i);
+    res.redirect("/");
+})
 
 
 
