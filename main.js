@@ -8,7 +8,7 @@ app.use(express.static("public"));
 
 const dayName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
-var listItems = [];
+var listItems = ["buy food", "cook food", "eat food"];
 
 app.get("/", (req, res)=>{
 

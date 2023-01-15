@@ -8,18 +8,22 @@
     <link rel="stylesheet" href="css/todoList.css">
 </head>
 <body>
-    <h1>ToDo List for <%= dayOfWeek %> </h1>
-    <ul>
-        <li>by food</li>
-        <li>cook food</li>
-        <li>eat food</li>
+    <div class="box" id="heading">
+        <h1>ToDo List for <%= dayOfWeek %> </h1>
+    </div>
+
+    <div class="box">
         <% for(var i = 0; i < newItems.length; i++) {  %>
-        <li><%= newItems[i] %></li>
+            <div class="item">
+                <input type="checkbox" name="" id="">
+                <p><%= newItems[i] %></p>
+            </div>
         <% } %>
-    </ul>
-    <form action="/" method="post">
-        <input type="text" name="newListItem" id="">
-        <button type="submit">Add to list</button>
-    </form>
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="newListItem"  placeholder="new list item" autocomplete="off">
+            <button type="submit">+</button>
+        </form>
+    </div>
 </body>
 </html>
