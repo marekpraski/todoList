@@ -58,8 +58,8 @@ html {
   }
   
   button {
-    min-height: 50px;
-    width: auto;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     border-color: transparent;
     background-color: #A683E3;
@@ -71,9 +71,9 @@ html {
   
   input[type="text"] {
     text-align: center;
-    height: 60px;
+    height: 40px;
     top: 10px;
-    border-color: #F1F1F1;
+    border: none;
     background: transparent;
     font-size: 20px;
     font-weight: 200;

@@ -1,19 +1,17 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const dateTools = require(__dirname + "/modules/dateTools.js");
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
-const dayName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-
 var listItems = ["buy food", "cook food", "eat food"];
 
 app.get("/", (req, res)=>{
-
-    let day = new Date();
-    res.render("toDoList", {dayOfWeek: dayName[day.getDay()], newItems: listItems});
+    let day = dateTools.date();
+    res.render("toDoList", {dayOfWeek: day, newItems: listItems});
 
 });
 
