@@ -34,7 +34,12 @@ app.post("/", (req, res)=>{
 });
 
 app.post("/delete", (req, res)=>{
-    removeItem(req.body.chb);
+    deleteItem(req.body.chbNew);
+    res.redirect("/");
+});
+
+app.post("/undelete", (req, res)=>{
+    undeleteItem(req.body.chbCompleted);
     res.redirect("/");
 });
 
@@ -46,9 +51,16 @@ function saveData(dataFile, items){
     });
 }
 
-function removeItem(itemId){
+function deleteItem(itemId){
     completedItems.push(listItems[itemId]);
     listItems.splice(itemId, 1);
+    saveData("data/completedList.txt", completedItems);
+    saveData("data/list.txt", listItems);
+}
+
+function undeleteItem(itemId){
+    listItems.push(completedItems[itemId]);
+    completedItems.splice(itemId, 1);
     saveData("data/completedList.txt", completedItems);
     saveData("data/list.txt", listItems);
 }

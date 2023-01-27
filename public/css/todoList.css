@@ -45,15 +45,20 @@ html {
     border-bottom: 1px solid #F1F1F1;
   }
   
+  /* :last-child	p:last-child	Selects every <p> element that is the last child of its parent */
   .item:last-child {
     border-bottom: 0;
   }
   
-  input:checked+p {
+  /* element+element	div + p	Selects the first <p> element that is placed immediately after <div> elements 
+  https://www.w3schools.com/cssref/css_selectors.php */
+
+  input:checked + p {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
   }
   
+  /*  [attribute]	[target]	Selects all elements with a target attribute  */
   input[type="checkbox"] {
     margin: 0px 20px 0px 20px;
   }

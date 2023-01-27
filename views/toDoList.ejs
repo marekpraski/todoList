@@ -13,7 +13,7 @@
 
                 <form action="/delete" method="post">
                     <div class="item">
-                        <input class="chbx" type="checkbox" name="chb" value=<%= i %> onChange="this.form.submit()">
+                        <input class="chbx" type="checkbox" name="chbNew" value=<%= i %> onChange="this.form.submit()">
                         <p><%= newItems[i].value %></p>
                     </div>
                 </form>
@@ -32,11 +32,13 @@
         </div>
 
         <div class="box">
-            <% for(var i = 0; i < completedItems.length; i++) {  %>
-                <div class="item">
-                    <input type="checkbox">
-                    <p><%= completedItems[i].value %></p>
-                </div>
+            <% for(var k = 0; k < completedItems.length; k++) {  %>
+                <form action="/undelete" method="post" >
+                    <div class="item">
+                        <input type="checkbox" name="chbCompleted" value=<%= k %> onChange="this.form.submit()">
+                        <p><%= completedItems[k].value %></p>
+                    </div>
+                </form>
             <% } %>
             <div class="item">
 
