@@ -1,23 +1,49 @@
 <%- include("header"); -%>
 
-    <div class="box" id="heading">
-        <h1>ToDo List for <%= dayOfWeek %> </h1>
-    </div>
+<div class="container">
+    <div class="group">
+        <div class="box" id="heading">
+            <h1>ToDo List for <%= dayOfWeek %> </h1>
+        </div>
 
-    <div class="box">
-        <% for(var i = 0; i < newItems.length; i++) {  %>
+        <div class="box">
+            <% for(var i = 0; i < newItems.length; i++) {  %>
 
-            <form action="/delete" method="post">
-                <div class="item">
-                    <input class="chbx" type="checkbox" name="chb" value=<%= i %> onChange="this.form.submit()">
-                    <p><%= newItems[i].value %></p>
-                </div>
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input class="chbx" type="checkbox" name="chb" value=<%= i %> onChange="this.form.submit()">
+                        <p><%= newItems[i].value %></p>
+                    </div>
+                </form>
+            <% } %>
+
+            <form class="item" action="/" method="post">
+                <input type="text" name="newListItem"  placeholder="new list item" autocomplete="off">
+                <button type="submit">+</button>
             </form>
-        <% } %>
-
-        <form class="item" action="/" method="post">
-            <input type="text" name="newListItem"  placeholder="new list item" autocomplete="off">
-            <button type="submit">+</button>
-        </form>
+        </div>
     </div>
-    <%- include("footer"); -%>
+    <div class="group">
+        <div class="box" id="heading">
+            <h1>Completed tasks</h1>
+        </div>
+
+        <div class="box">
+            <% for(var i = 0; i < newItems.length; i++) {  %>
+
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input class="chbx" type="checkbox" name="chb" value=<%= i %> onChange="this.form.submit()">
+                        <p><%= newItems[i].value %></p>
+                    </div>
+                </form>
+            <% } %>
+            <form class="item" action="/" method="post">
+                <input type="text" name="newListItem"  placeholder="new list item" autocomplete="off">
+                <button type="submit">+</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include("footer"); -%>

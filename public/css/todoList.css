@@ -12,7 +12,7 @@ html {
   
   .box {
     max-width: 400px;
-    margin: 50px auto;
+    margin: 20px auto;
     background: white;
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
@@ -21,6 +21,17 @@ html {
   #heading {
     background-color: #A683E3;
     text-align: center;
+  }
+
+  .container{
+    text-align: center;
+  }
+
+  .group{
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   
   .item {
