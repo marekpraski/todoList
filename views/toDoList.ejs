@@ -1,11 +1,13 @@
 <%- include("header"); -%>
-
 <div class="container">
+    <div class="mainHeaderDiv">
+        <h1 class="mainHeader">Zadania - ten nagłówek będzie dynamiczny</h1>
+    </div>
+
     <div class="group">
         <div class="box" id="heading">
-            <h1>ToDo List for <%= dayOfWeek %> </h1>
+            <h1 class="listHeader">Do zrobienia <%= dayOfWeek %> </h1>
         </div>
-
         <div class="box">
             <% for(var i = 0; i < newItems.length; i++) {  %>
 
@@ -23,27 +25,26 @@
             </form>
         </div>
     </div>
+
     <div class="group">
         <div class="box" id="heading">
-            <h1>Completed tasks</h1>
+            <h1 class="listHeader">Zrobione</h1>
         </div>
 
         <div class="box">
-            <% for(var i = 0; i < newItems.length; i++) {  %>
-
-                <form action="/delete" method="post">
-                    <div class="item">
-                        <input class="chbx" type="checkbox" name="chb" value=<%= i %> onChange="this.form.submit()">
-                        <p><%= newItems[i].value %></p>
-                    </div>
-                </form>
+            <% for(var i = 0; i < completedItems.length; i++) {  %>
+                <div class="item">
+                    <input type="checkbox">
+                    <p><%= completedItems[i].value %></p>
+                </div>
             <% } %>
-            <form class="item" action="/" method="post">
-                <input type="text" name="newListItem"  placeholder="new list item" autocomplete="off">
-                <button type="submit">+</button>
-            </form>
+            <div class="item">
+
+            </div>
+
         </div>
     </div>
+
 </div>
 
 <%- include("footer"); -%>

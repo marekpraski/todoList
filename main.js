@@ -23,7 +23,7 @@ var listItems = readData("data/list.txt");
 
 app.get("/", (req, res)=>{
     let day = dateTools.day();
-    res.render("toDoList", {dayOfWeek: day, newItems: listItems});  //używając modułu ejs pliki html zamieniam na ejs
+    res.render("toDoList", {dayOfWeek: day, newItems: listItems, completedItems: completedItems});  //używając modułu ejs pliki html zamieniam na ejs
 });
 
 app.post("/", (req, res)=>{
