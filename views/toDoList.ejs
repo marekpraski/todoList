@@ -2,7 +2,7 @@
 <div class="container">
     <div class="group">
         <div class="box" id="heading">
-            <h1 class="listHeader">Do zrobienia <%= dayOfWeek %> </h1>
+            <h3 class="listHeader">Do zrobienia <%= dayOfWeek %> </h3>
         </div>
         <div class="box">
             <% for(var i = 0; i < newItems.length; i++) {  %>
@@ -10,7 +10,7 @@
                 <form action="/delete" method="post">
                     <div class="item">
                         <input class="chbx" type="checkbox" name="chbNew" value=<%= i %> onChange="this.form.submit()">
-                        <p><%= newItems[i].value %></p>
+                        <p class="newItem"><%= newItems[i].value %></p>
                     </div>
                 </form>
             <% } %>
@@ -24,7 +24,7 @@
 
     <div class="group">
         <div class="box" id="heading">
-            <h1 class="listHeader">Zrobione</h1>
+            <h3 class="listHeader">Zrobione</h3>
         </div>
 
         <div class="box">
@@ -32,7 +32,7 @@
                 <form action="/undelete" method="post" >
                     <div class="item">
                         <input type="checkbox" name="chbCompleted" value=<%= k %> onChange="this.form.submit()">
-                        <p><%= completedItems[k].value %></p>
+                        <p class="oldItem"><%= completedItems[k].value %></p>
                     </div>
                 </form>
             <% } %>

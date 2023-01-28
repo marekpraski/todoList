@@ -16,20 +16,36 @@ function readData(dataFile){
 function ListItem(value){
     this.value = value;
 }
+function PeriodDataItem(periodHeading, todoItems, doneItems){
+    this.periodHeading = periodHeading;
+    this.todoItems = todoItems;
+    this.doneItems = doneItems;
+}
 
+function TodoDB(currentPeriodId, periodItems){
+    this.currentPeriodId = currentPeriodId;
+    this.periodItems = periodItems;
+}
 
-var completedItems = readData("data/completedList.txt");;
-var listItems = readData("data/list.txt");
+var todoDB;
+var currentPeriodId;
+var currentPeriodData;
+var periodHeading;
+var todoItems;
+var completedItems;
+getData();
 
 app.get("/", (req, res)=>{
     let day = dateTools.day();
-    res.render("toDoList", {dayOfWeek: day, newItems: listItems, completedItems: completedItems});  //używając modułu ejs pliki html zamieniam na ejs
+    res.render("toDoList", {dayOfWeek: day, newItems: todoItems, completedItems: completedItems,
+    period: periodHeading});  //używając modułu ejs pliki html zamieniam na ejs
 });
 
 app.post("/", (req, res)=>{
     let newItem = new ListItem(req.body.newListItem);
-    listItems.push(newItem);
-    saveData("data/list.txt", listItems);
+    todoItems.push(newItem);
+    todoDB.periodItems[currentPeriodId].todoItems = todoItems;
+    saveData("data/toDoListDB.txt", todoDB);
     res.redirect("/");
 });
 
@@ -52,17 +68,40 @@ function saveData(dataFile, items){
 }
 
 function deleteItem(itemId){
-    completedItems.push(listItems[itemId]);
-    listItems.splice(itemId, 1);
-    saveData("data/completedList.txt", completedItems);
-    saveData("data/list.txt", listItems);
+    completedItems.push(todoItems[itemId]);
+    todoDB.periodItems[currentPeriodId].doneItems = completedItems;
+    todoItems.splice(itemId, 1);
+    todoDB.periodItems[currentPeriodId].todoItems = todoItems;
+    saveData("data/toDoListDB.txt", todoDB);
 }
 
 function undeleteItem(itemId){
-    listItems.push(completedItems[itemId]);
+    todoItems.push(completedItems[itemId]);
+    todoDB.periodItems[currentPeriodId].todoItems = todoItems;
     completedItems.splice(itemId, 1);
-    saveData("data/completedList.txt", completedItems);
-    saveData("data/list.txt", listItems);
+    todoDB.periodItems[currentPeriodId].doneItems = completedItems;
+    saveData("data/toDoListDB.txt", todoDB);
+}
+
+function getData(){
+    todoDB = readData("data/toDoListDB.txt");
+    currentPeriodId = todoDB.currentPeriodId;
+    currentPeriodData = todoDB.periodItems[currentPeriodId];
+
+    periodHeading = currentPeriodData.periodHeading;
+    todoItems = currentPeriodData.todoItems;
+    completedItems = currentPeriodData.doneItems;
+}
+
+function createNewTodoDB(){
+    let periodData = [];
+    let periodHeading = "this week";
+    let todoItems = [];
+    let completedItems = [];
+    let periodDataItem = new PeriodDataItem(periodHeading, todoItems, completedItems);
+    periodData.push(periodDataItem);
+    let currentPeriodId = 0;
+    let todoDB = new TodoDB(currentPeriodId, periodData);
 }
 
 

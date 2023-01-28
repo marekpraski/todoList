@@ -55,9 +55,18 @@ html {
   /* element+element	div + p	Selects the first <p> element that is placed immediately after <div> elements 
   https://www.w3schools.com/cssref/css_selectors.php */
 
-  input:checked + p {
+  input:checked + p.newItem {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
+  }
+
+  p.oldItem{
+    text-decoration: line-through;
+    text-decoration-color: #A683E3;
+  }
+
+  input:checked + p.oldItem{
+    text-decoration: none;
   }
   
   /*  [attribute]	[target]	Selects all elements with a target attribute  */
