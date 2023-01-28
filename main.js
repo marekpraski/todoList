@@ -55,6 +55,15 @@ app.post("/", (req, res)=>{
     res.redirect("/");
 });
 
+app.get("/compose", (req, res)=>{
+    res.render("compose", {period: "Nowy plan"});
+});
+
+app.post("/compose", (req, res)=>{
+    console.log(req.body.title);
+    res.redirect("/");
+});
+
 app.post("/delete", (req, res)=>{
     deleteItem(req.body.chbNew);
     res.redirect("/");

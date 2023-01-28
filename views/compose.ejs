@@ -1,0 +1,19 @@
+<%- include("header"); -%>
+<div  class="box" id="heading">
+<h2 class="listHeader">Nowy plan</h2>
+</div>
+
+
+<form action="/compose" method="post">
+<div class="box">
+  <input type="text" class="form-control" name="title" placeholder="Nazwa, okres nowego planu" autocomplete="off">
+</div>
+
+<div class="box">
+<button class="comp btn btn-primary" type="submit">Dodaj</button>
+</div>
+</form>
+
+
+
+<%- include("footer"); -%>

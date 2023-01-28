@@ -7,15 +7,16 @@
     <title>ToDo List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/todoList.css">
+    <link rel="stylesheet" href="css/compose.css">
     <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <p class="navbar-brand">Aktualne zadania do zrobienia  <%= period  %></p>
+            <p class="navbar-brand"> <%= period  %></p>
           </div>
             <ul class="nav navbar-nav navbar-right">
-              <li id="home"><a href="/">HOME</a></li>
+              <li id="home"><a href="/">Bieżący</a></li>
               <li id="about"><a href="/all">Wszystkie</a></li>
-              <li id="compose"><a href="/compose">Nowy plan</a></li>
+              <li id="compose"><a href="/compose">Nowy</a></li>
             </ul>
         </div>
       </nav>
