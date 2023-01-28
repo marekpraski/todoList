@@ -1,1 +1,1 @@
-{"currentPeriodId":0,"periodItems":[{"periodHeading":"this week","todoItems":[{"value":"nowy"},{"value":"drugi"}],"doneItems":[]}]}
+{"currentPeriodId":0,"periodItems":[{"periodHeading":"this week","todoItems":[{"value":"jeszcze"}],"doneItems":[{"value":"nowy"}]}]}

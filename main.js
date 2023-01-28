@@ -33,7 +33,13 @@ var currentPeriodData;
 var periodHeading;
 var todoItems;
 var completedItems;
-getData();
+
+try{
+    getData();
+}
+catch{
+    createNewTodoDB();
+}
 
 app.get("/", (req, res)=>{
     let day = dateTools.day();
@@ -94,14 +100,14 @@ function getData(){
 }
 
 function createNewTodoDB(){
-    let periodData = [];
-    let periodHeading = "this week";
-    let todoItems = [];
-    let completedItems = [];
-    let periodDataItem = new PeriodDataItem(periodHeading, todoItems, completedItems);
+    periodData = [];
+    periodHeading = "this week";
+    todoItems = [];
+    completedItems = [];
+    periodDataItem = new PeriodDataItem(periodHeading, todoItems, completedItems);
     periodData.push(periodDataItem);
-    let currentPeriodId = 0;
-    let todoDB = new TodoDB(currentPeriodId, periodData);
+    currentPeriodId = 0;
+    todoDB = new TodoDB(currentPeriodId, periodData);
 }
 
 
