@@ -1,8 +1,14 @@
 <%- include("header"); -%>
 
+<% var id = currentId %>
 <% for(var i = todos.length - 1; i > -1; i--){ %>
     <form action="/toCurrent" method="post">
         <div class="box item">
+            <% if(i == id) { %>
+                <input type="radio" name="radioB" checked>
+                <% } else { %>
+                <input type="radio" name="radioB" disabled>
+            <% } %>
             <p class="pAll">
                 <a href= <%= "/" + i %> > <%=  todos[i].periodHeading %>  %></a>
             </p>

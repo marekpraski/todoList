@@ -8,7 +8,7 @@
             <% for(var i = 0; i < newItems.length; i++) {  %>
 
                 <form action="/delete" method="post">
-                    <div class="item">
+                    <div class="item edit" contenteditable="true">
                         <input class="chbx" type="checkbox" name="chbNew" value=<%= i %> onChange="this.form.submit()">
                         <p class="newItem"><%= newItems[i].value %></p>
                     </div>
