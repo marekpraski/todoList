@@ -1,1 +1,0 @@
-{"currentPeriodId":2,"periodItems":[{"periodHeading":"undefined","todoItems":[{"value":"und nowy"}],"doneItems":[{"value":"und delete"}]},{"periodHeading":"01-02","todoItems":[{"value":"01 nowy"}],"doneItems":[{"value":"01 dele"}]},{"periodHeading":"03-04","todoItems":[{"value":"03 nnn"}],"doneItems":[{"value":"03 ddd"}]}]}

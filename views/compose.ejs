@@ -6,11 +6,17 @@
 
 <form action="/compose" method="post">
 <div class="box">
-  <input type="text" class="form-control" name="title" placeholder="Nazwa, okres nowego planu" autocomplete="off">
+  <input type="text" class="form-control" name="title" placeholder="Nazwa, okres, nowego planu" autocomplete="off">
+</div>
+<div class="box item">
+  <input type="checkbox" class="chbImport" name="chbImport">
+  <div class="importDiv">
+    <p class="import">Importuj "do zrobienia" z bieżącego planu</p>
+  </div>
+  <button class="comp btn btn-primary" type="submit">Twórz</button>
 </div>
 
 <div class="box">
-<button class="comp btn btn-primary" type="submit">Dodaj</button>
 </div>
 </form>
 
