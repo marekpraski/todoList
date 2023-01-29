@@ -78,6 +78,13 @@ app.get("/all", (req, res)=>{
     res.render("all", {todos: todoDB.periodItems, period: "Wszystkie"});
 });
 
+app.post("/toCurrent", (req, res)=>{
+    todoDB.currentPeriodId = req.body.item;
+    setCurrentItems();
+    saveData(dataFile, todoDB);
+    res.redirect("/");
+})
+
 app.get("/:itemId", (req, res)=>{
     let itemId = req.params.itemId;
     res.render("archivedList", {newItems: todoDB.periodItems[itemId].todoItems, 
