@@ -18,6 +18,7 @@ function readData(dataFile){
 function ListItem(value){
     this.value = value;
 }
+
 function PeriodDataItem(periodHeading, todoItems, doneItems){
     this.periodHeading = periodHeading;
     this.todoItems = todoItems;
@@ -72,6 +73,17 @@ app.post("/compose", (req, res)=>{
     saveData(dataFile, todoDB);
     res.redirect("/");
 });
+
+app.get("/all", (req, res)=>{
+    res.render("all", {todos: todoDB.periodItems, period: "Wszystkie"});
+});
+
+app.get("/:itemId", (req, res)=>{
+    let itemId = req.params.itemId;
+    res.render("archivedList", {newItems: todoDB.periodItems[itemId].todoItems, 
+        completedItems: todoDB.periodItems[itemId].doneItems,
+        period: todoDB.periodItems[itemId].periodHeading});
+  });
 
 app.post("/delete", (req, res)=>{
     deleteItem(req.body.chbNew);
