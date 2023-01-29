@@ -36,7 +36,7 @@ try{
     getData();
 }
 catch{
-    createNewTodoDB("nieokreślony");
+    createNewTodoDB("autocreated");
 }
 
 var currentPeriodId;
@@ -48,9 +48,15 @@ var currentDoneItems;
 setCurrentItems();
 
 app.get("/", (req, res)=>{
-    let day = dateTools.day();
-    res.render("toDoList", {dayOfWeek: day, newItems: currentTodoItems, completedItems: currentDoneItems,
-    period: currentPeriodHeading});  //używając modułu ejs pliki html zamieniam na ejs
+    if(currentPeriodHeading === "autocreated"){
+        todoDB.periodItems.pop();
+        res.redirect("/compose");
+    }
+    else{
+        let day = dateTools.day();
+        res.render("toDoList", {dayOfWeek: day, newItems: currentTodoItems, completedItems: currentDoneItems,
+        period: currentPeriodHeading});  //używając modułu ejs pliki html zamieniam na ejs
+    }
 });
 
 app.post("/", (req, res)=>{
@@ -67,6 +73,12 @@ app.get("/compose", (req, res)=>{
 
 app.post("/compose", (req, res)=>{
     let newPeriodItem = createNewTodoDBItem(req.body.title);
+    let imp = req.body.chbImport;
+    if(imp == 1){          //zwraca 1 tylko wtedy jeżeli checkbox jest zaznaczony, jeżeli nie jest zaznaczony zwraca undefined
+        for(let i = 0; i < currentTodoItems.length; i++){
+            newPeriodItem.todoItems.push(currentTodoItems[i]);
+        }
+    }
     todoDB.periodItems.push(newPeriodItem);
     todoDB.currentPeriodId = todoDB.periodItems.length - 1;
     setCurrentItems();
