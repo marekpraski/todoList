@@ -14,9 +14,14 @@ html {
   .mainHeaderDiv{
     text-align: center;
   }
+
+  .container{
+    padding-left: 35px;
+    margin-left: 0%;
+  }
   
   .box {
-    width: 600px;
+    width: 700px;
     margin: 20px auto;
     background: white;
     border-radius: 5px;
@@ -25,10 +30,6 @@ html {
   
   #heading {
     background-color: #A683E3;
-    text-align: center;
-  }
-
-  .container{
     text-align: center;
   }
 
@@ -78,7 +79,7 @@ html {
     margin: 0;
     margin-left: 10px;
     padding: 5px;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 200;
     color: #00204a;
   }
@@ -108,7 +109,7 @@ html {
     background: transparent;
     font-size: 20px;
     font-weight: 200;
-    width: 540px;
+    width: 640px;
   }
   
   input[type="text"]:focus {
