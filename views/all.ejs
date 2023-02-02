@@ -10,7 +10,7 @@
                 <input type="radio" name="radioB" disabled>
             <% } %>
             <p class="pAll">
-                <a href= <%= "/" + i %> > <%=  todos[i].periodHeading %>  %></a>
+                <a href= <%= "/items/" + i %> > <%=  todos[i].periodHeading %>  %></a>
             </p>
             <input type="hidden" name="item" value=<%= i %>>
             <button class="comp btn btn-primary" type="submit">Bieżący</button>

@@ -2,21 +2,21 @@
 <div class="container">
     <div class="group">
         <div class="box" id="heading">
-            <h3 class="listHeader">Do zrobienia <%= dayOfWeek %> </h3>
+            <h3 class="listHeader">Do zrobienia</h3>
         </div>
         <div class="box">
             <% for(var i = 0; i < newItems.length; i++) {  %>
 
                 <form action="/delete" method="post">
-                    <div class="item edit" contenteditable="true">
+                    <div class="item edit">
                         <input class="chbx" type="checkbox" name="chbNew" value=<%= i %> onChange="this.form.submit()">
-                        <p class="newItem"><%= newItems[i].value %></p>
+                        <p class="newItem" contenteditable="true"><%= newItems[i].value %></p>
                     </div>
                 </form>
             <% } %>
 
             <form class="item" action="/" method="post">
-                <input type="text" name="newListItem"  placeholder="new list item" autocomplete="off">
+                <textarea name="newListItem" placeholder="new list item" ></textarea>
                 <button class="todo" type="submit">+</button>
             </form>
         </div>
@@ -45,4 +45,17 @@
 
 </div>
 
+<script>
+const tx = document.getElementsByTagName("textarea");
+for (let i = 0; i < tx.length; i++) {
+  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+  tx[i].addEventListener("input", OnInput, false);
+}
+
+function OnInput() {
+  this.style.height = 0;
+  this.style.height = (this.scrollHeight) + "px";
+}
+
+</script>
 <%- include("footer"); -%>

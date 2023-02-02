@@ -54,7 +54,7 @@ app.get("/", (req, res)=>{
     }
     else{
         let day = dateTools.day();
-        res.render("toDoList", {dayOfWeek: day, newItems: currentTodoItems, completedItems: currentDoneItems,
+        res.render("toDoList", {newItems: currentTodoItems, completedItems: currentDoneItems,
         period: currentPeriodHeading});  //używając modułu ejs pliki html zamieniam na ejs
     }
 });
@@ -97,7 +97,7 @@ app.post("/toCurrent", (req, res)=>{
     res.redirect("/");
 })
 
-app.get("/:itemId", (req, res)=>{
+app.get("/items/:itemId", (req, res)=>{
     let itemId = req.params.itemId;
     res.render("archivedList", {newItems: todoDB.periodItems[itemId].todoItems, 
         completedItems: todoDB.periodItems[itemId].doneItems,
