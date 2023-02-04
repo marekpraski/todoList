@@ -114,6 +114,15 @@ app.post("/undelete", (req, res)=>{
     res.redirect("/");
 });
 
+app.post("/saveItem", (req, res)=>{
+    let editedTodoItem = JSON.parse(req.body.todoItem);
+    let index = editedTodoItem.todoId;
+    let newValue = editedTodoItem.txt;
+    currentTodoItems[index].value = newValue;
+    saveData(dataFile, todoDB);
+    res.redirect("/");
+})
+
 function saveData(dataFile, items){
     fs.writeFile(dataFile, JSON.stringify(items), (err)=>{
         if(err){

@@ -10,7 +10,7 @@
                 <form action="/delete" method="post">
                     <div class="item edit">
                         <input class="chbx" type="checkbox" name="chbNew" value=<%= i %> onChange="this.form.submit()">
-                        <p class="newItem" contenteditable="true"><%= newItems[i].value %></p>
+                        <textarea onchange="autoSave(this.id, this.value)" class="newItem" id=<%= i %> contenteditable="true"><%= newItems[i].value %> </textarea>
                     </div>
                 </form>
             <% } %>
@@ -45,17 +45,5 @@
 
 </div>
 
-<script>
-const tx = document.getElementsByTagName("textarea");
-for (let i = 0; i < tx.length; i++) {
-  tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-  tx[i].addEventListener("input", OnInput, false);
-}
-
-function OnInput() {
-  this.style.height = 0;
-  this.style.height = (this.scrollHeight) + "px";
-}
-
-</script>
+<script src="/js/todo.js"></script>
 <%- include("footer"); -%>
