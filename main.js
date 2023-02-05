@@ -87,7 +87,9 @@ app.post("/compose", (req, res)=>{
 });
 
 app.get("/all", (req, res)=>{
-    res.render("all", {todos: todoDB.periodItems, period: "Wszystkie", currentId: currentPeriodId});
+    res.render("all", {listItems: todoDB.periodItems, 
+        period: "Wszystkie", 
+        currentId: currentPeriodId});
 });
 
 app.post("/toCurrent", (req, res)=>{

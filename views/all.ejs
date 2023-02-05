@@ -1,25 +1,28 @@
 <%- include("header"); -%>
 
 <% var id = currentId %>
-<% for(var i = todos.length - 1; i > -1; i--){ %>
+<% for(var i = listItems.length - 1; i > -1; i--){ %>
 
     <div class="box item">
 
         <p class="pAll">
             <% if(i == id) { %>
-            <a id="current" href= <%= "/items/" + i %> ><b> <%=  todos[i].periodHeading %></b></a>
+            <a id="current" href= <%= "/items/" + i %> ><b> <%=  listItems[i].periodHeading %></b></a>
             <% } else { %>
-                <a href= <%= "/items/" + i %> > <%=  todos[i].periodHeading %></a>
+                <a href= <%= "/items/" + i %> > <%=  listItems[i].periodHeading %></a>
             <% } %>
         </p>
         <input type="hidden" name="item" value=<%= i %>>
-        <% if(todos.length > 1) { %>
+        <% if(listItems.length > 1) { %>
+            <% if(listItems[i].todoItems.length === 0) { %>
+                <img name="deleteImg" id=<%= i %> src="/images/delete.png" alt="">
+            <% } %>
             <img name="homeImg" id=<%= i %> src="/images/home.png" alt="home">
-            <img name="deleteImg" id=<%= i %> src="/images/delete.png" alt="">
         <% } %>
     </div>
 
 <% };  %>
+
 <script src="/js/all.js"></script>
 
 <%- include("footer"); -%>
