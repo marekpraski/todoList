@@ -1,13 +1,18 @@
 <%- include("header"); -%>
+
 <div class="container">
     <div class="group">
         <div class="box" id="heading">
             <h3 class="listHeader">Do zrobienia </h3>
         </div>
         <div class="box">
+            <input type="hidden" id="listIdHolder" value=<%= listId %>>
             <% for(var i = 0; i < newItems.length; i++) {  %>
                     <div class="item">
-                        <p class="newItem"><%= newItems[i].value %></p>
+                        <p class="pAll"><%= newItems[i].value %></p>
+                        <% if(listId > -1) { %>
+                            <img name="exportImg" src="/images/share.png" id=<%= i %>>
+                        <% } %>
                     </div>
             <% } %>
         </div>
@@ -27,5 +32,6 @@
     </div>
 
 </div>
+<script src="/js/archivedList.js"></script>
 
 <%- include("footer"); -%>

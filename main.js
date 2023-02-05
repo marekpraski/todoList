@@ -116,10 +116,24 @@ app.post("/deleteList", (req, res)=>{
 
 app.get("/items/:itemId", (req, res)=>{
     let itemId = req.params.itemId;
-    res.render("archivedList", {newItems: todoDB.periodItems[itemId].todoItems, 
+    let idToSend = itemId;
+    if(itemId === currentPeriodId)
+        idToSend = -1;      //dla bieżącej listy nie chcę ikonek eksportu
+    res.render("archivedList", {listId: idToSend,
+        newItems: todoDB.periodItems[itemId].todoItems, 
         completedItems: todoDB.periodItems[itemId].doneItems,
         period: todoDB.periodItems[itemId].periodHeading});
   });
+
+  app.post("/itemExport", (req, res)=>{
+    let dataSent = JSON.parse(req.body.export);
+    let listId =  dataSent.listId;
+    let itemId = dataSent.todoItemId;
+    let item = todoDB.periodItems[listId].todoItems.splice(itemId, 1);
+    currentTodoItems.push(item[0]);
+    saveData(dataFile, todoDB);
+    res.redirect("/items/" + listId);
+  })
 
 app.post("/toDone", (req, res)=>{
     markItemDone(req.body.chbNew);

@@ -1,8 +1,12 @@
 .importDiv{
-    width: 450px;
+    width: 100%;
 }
 
 p.import{
     color:dimgray;
     font-size: medium;
+}
+
+.planName{
+    font-size: large;
 }
