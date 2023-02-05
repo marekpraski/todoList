@@ -1,4 +1,14 @@
 .pAll{
     display: inline-block;
-    width: 500px;
+    width: 100%;
+}
+
+img{
+    cursor: pointer;
+    padding-left: 2px;    
+}
+
+a#current{
+    text-decoration: underline;
+    color:darkmagenta;
 }

@@ -2,20 +2,24 @@
 
 <% var id = currentId %>
 <% for(var i = todos.length - 1; i > -1; i--){ %>
-    <form action="/toCurrent" method="post">
-        <div class="box item">
+
+    <div class="box item">
+
+        <p class="pAll">
             <% if(i == id) { %>
-                <input type="radio" name="radioB" checked>
-                <% } else { %>
-                <input type="radio" name="radioB" disabled>
+            <a id="current" href= <%= "/items/" + i %> ><b> <%=  todos[i].periodHeading %></b></a>
+            <% } else { %>
+                <a href= <%= "/items/" + i %> > <%=  todos[i].periodHeading %></a>
             <% } %>
-            <p class="pAll">
-                <a href= <%= "/items/" + i %> > <%=  todos[i].periodHeading %>  %></a>
-            </p>
-            <input type="hidden" name="item" value=<%= i %>>
-            <button class="comp btn btn-primary" type="submit">Bieżący</button>
-        </div>
-    </form>
+        </p>
+        <input type="hidden" name="item" value=<%= i %>>
+        <% if(todos.length > 1) { %>
+            <img name="homeImg" id=<%= i %> src="/images/home.png" alt="home">
+            <img name="deleteImg" id=<%= i %> src="/images/delete.png" alt="">
+        <% } %>
+    </div>
+
 <% };  %>
+<script src="/js/all.js"></script>
 
 <%- include("footer"); -%>

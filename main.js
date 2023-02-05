@@ -91,11 +91,26 @@ app.get("/all", (req, res)=>{
 });
 
 app.post("/toCurrent", (req, res)=>{
-    todoDB.currentPeriodId = req.body.item;
+    todoDB.currentPeriodId = req.body.homeImg;
     setCurrentItems();
     saveData(dataFile, todoDB);
     res.redirect("/");
-})
+});
+
+app.post("/deleteList", (req, res)=>{
+    let listIdToDelete = req.body.deleteImg;
+    if(todoDB.periodItems.length > 1)
+    {
+        todoDB.periodItems.splice(listIdToDelete, 1);
+        todoDB.currentPeriodId = 0;
+        setCurrentItems();
+        saveData(dataFile, todoDB);
+        if(todoDB.periodItems.length > 1)
+            res.redirect("/all");
+        else
+            res.redirect("/");
+    }
+});
 
 app.get("/items/:itemId", (req, res)=>{
     let itemId = req.params.itemId;
@@ -104,13 +119,13 @@ app.get("/items/:itemId", (req, res)=>{
         period: todoDB.periodItems[itemId].periodHeading});
   });
 
-app.post("/delete", (req, res)=>{
-    deleteItem(req.body.chbNew);
+app.post("/toDone", (req, res)=>{
+    markItemDone(req.body.chbNew);
     res.redirect("/");
 });
 
-app.post("/undelete", (req, res)=>{
-    undeleteItem(req.body.chbCompleted);
+app.post("/toPlanned", (req, res)=>{
+    markItemPlanned(req.body.chbCompleted);
     res.redirect("/");
 });
 
@@ -131,7 +146,7 @@ function saveData(dataFile, items){
     });
 }
 
-function deleteItem(itemId){
+function markItemDone(itemId){
     currentDoneItems.push(currentTodoItems[itemId]);
     todoDB.periodItems[currentPeriodId].doneItems = currentDoneItems;
     currentTodoItems.splice(itemId, 1);
@@ -139,7 +154,7 @@ function deleteItem(itemId){
     saveData(dataFile, todoDB);
 }
 
-function undeleteItem(itemId){
+function markItemPlanned(itemId){
     currentTodoItems.push(currentDoneItems[itemId]);
     todoDB.periodItems[currentPeriodId].todoItems = currentTodoItems;
     currentDoneItems.splice(itemId, 1);

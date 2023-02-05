@@ -7,7 +7,7 @@
         <div class="box">
             <% for(var i = 0; i < newItems.length; i++) {  %>
 
-                <form action="/delete" method="post">
+                <form action="/toDone" method="post">
                     <div class="item edit">
                         <input class="chbx" type="checkbox" name="chbNew" value=<%= i %> onChange="this.form.submit()">
                         <textarea onchange="autoSave(this.id, this.value)" class="newItem" id=<%= i %> contenteditable="true"><%= newItems[i].value %> </textarea>
@@ -29,7 +29,7 @@
 
         <div class="box">
             <% for(var k = 0; k < completedItems.length; k++) {  %>
-                <form action="/undelete" method="post" >
+                <form action="/toPlanned" method="post" >
                     <div class="item">
                         <input type="checkbox" name="chbCompleted" value=<%= k %> onChange="this.form.submit()">
                         <p class="oldItem"><%= completedItems[k].value %></p>
