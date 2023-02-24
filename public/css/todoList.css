@@ -45,12 +45,12 @@ html {
     min-height: 30px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #F1F1F1;
+    border-bottom: 1px dashed #bdb8b8;
   }
   
   /* :last-child	p:last-child	Selects every <p> element that is the last child of its parent */
   .item:last-child {
-    border-bottom: 0;
+   /* border-bottom: 0; */
   }
   
   /* element+element	div + p	Selects the first <p> element that is placed immediately after <div> elements 

@@ -78,6 +78,7 @@ app.post("/compose", (req, res)=>{
         for(let i = 0; i < currentTodoItems.length; i++){
             newPeriodItem.todoItems.push(currentTodoItems[i]);
         }
+        currentTodoItems.length = 0;
     }
     todoDB.periodItems.push(newPeriodItem);
     todoDB.currentPeriodId = todoDB.periodItems.length - 1;
