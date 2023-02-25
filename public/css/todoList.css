@@ -47,6 +47,16 @@ html {
     align-items: center;
     border-bottom: 1px dashed #bdb8b8;
   }
+  .dragTarget{
+    height: 5px;
+  }
+  .draggedOver{
+    height: 30px;
+    background-color:#e2dbdb;
+  }
+  .dragging{
+    background-color: aqua;
+  }
   
   /* :last-child	p:last-child	Selects every <p> element that is the last child of its parent */
   .item:last-child {

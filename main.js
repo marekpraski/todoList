@@ -155,6 +155,26 @@ app.post("/saveItem", (req, res)=>{
     res.redirect("/");
 })
 
+app.post("/moveItem", (req, res)=>{
+    let movedItem = JSON.parse(req.body.movedItem);
+    let oldPosition = movedItem.oldPosition;
+    let newPosition = movedItem.newPosition;
+    if(oldPosition > newPosition){
+        newPosition++;
+    }
+    if(oldPosition !== newPosition){
+        moveItem(oldPosition, newPosition);
+        saveData(dataFile, todoDB);
+    }
+    res.redirect("/");
+});
+
+function moveItem(oldPosition, newPosition){
+    let movedItem = currentTodoItems.splice(oldPosition, 1)[0];
+    console.log(JSON.stringify(movedItem));
+    currentTodoItems.splice(newPosition, 0, movedItem);
+}
+
 function saveData(dataFile, items){
     fs.writeFile(dataFile, JSON.stringify(items), (err)=>{
         if(err){
